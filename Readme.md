@@ -8,6 +8,8 @@
 * [Python Naming Conventions](https://pythonguides.com/python-naming-conventions/)
 
 -- --
-### Reference
+### django Reference
 
-* [how to hide django secrect key](https://stackoverflow.com/questions/64208678/hiding-secret-key-in-django-project-on-github-after-uploading-project)
+* [Hide Secrect Key](https://stackoverflow.com/questions/64208678/hiding-secret-key-in-django-project-on-github-after-uploading-project)
+* [django Design Principle](https://docs.djangoproject.com/ko/4.1/misc/design-philosophies/#dry)
+* [Append Slash Setting](https://docs.djangoproject.com/ko/4.1/ref/settings/#std-setting-APPEND_SLASH)
