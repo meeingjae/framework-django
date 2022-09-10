@@ -7,27 +7,27 @@ from django.template import loader
 from .models import Question
 
 
-def customIndexV1(request):
-    latestQuestionList = Question.objects.order_by('-pub_date')[:5]
-    output = ', '.join([q.question_text for q in latestQuestionList])
+def custom_index_v1(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    output = ', '.join([q.question_text for q in latest_question_list])
     return HttpResponse(output)
 
 
-def customIndexV2(request):
-    latestQuestionList = Question.objects.order_by('-pub_date')[:5]
+def custom_index_v2(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
 
     template = loader.get_template('polls/index.html')
     context = {
-        'latestQuestionList': latestQuestionList
+        'latest_question_list': latest_question_list
     }
-    # output = ', '.join([q.question_text for q in latestQuestionList])
+    # output = ', '.join([q.question_text for q in latest_question_list])
     return HttpResponse(template.render(context, request))
 
 
-def customIndexV3(request):
-    latestQuestionList = Question.objects.order_by('-pub_date')[:5]
+def custom_index_v3(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
     context = {
-        'latestQuestionList': latestQuestionList
+        'latest_question_list': latest_question_list
     }
     return render(request, 'polls/index.html', context)
 
@@ -36,7 +36,7 @@ def detail(request, question_id):
     return HttpResponse("this is parameter question_id : %s" % question_id)
 
 
-def detailV2NotFound(request, question_id):
+def detail_v2_not_found(request, question_id):
     try:
         question = Question.objects.get(pk=question_id)
     except Question.DoesNotExist:
@@ -44,7 +44,7 @@ def detailV2NotFound(request, question_id):
     return render(request, 'polls/detail.html', {'question': question})
 
 
-def detailV3NotFound(request, question_id):
+def detail_v3_not_found(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     return render(request, 'polls/detail.html', {'quetion': question})
 
