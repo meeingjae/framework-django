@@ -1,10 +1,11 @@
 from django.http import Http404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.template import loader
+from django.urls import reverse
 
 # Create your views here.
-from .models import Question
+from .models import Question, Choice
 
 
 def custom_index_v1(request):
@@ -54,4 +55,16 @@ def results(request, question_id):
 
 
 def vote(request, question_id):
-    return HttpResponse("you are vote question %s." % question_id)
+    question = get_object_or_404(Question, pk=question_id)
+    try:
+        selected_choice = question.choice_set.get(pk=request.POST['choice'])
+    except (KeyError, Choice.DoesNotExist):
+        return render(request, 'polls/detail_vote.html', {
+            'question': question,
+            'error_message': "You did Not Select a Choice.",
+        })
+    else:
+        selected_choice.votes += 1
+        selected_choice.save()
+
+    return HttpResponseRedirect(reverse('polls_app:result', args=(question.id,)))
