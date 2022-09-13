@@ -13,7 +13,7 @@ urlpatterns = [
     # ex: /polls/v3/2
     path('v3/<int:question_id>', views.detail_v3_not_found, name='details_v3'),
     # ex: /polls/2/custom-results
-    path('<int:question_id>/custom-results', views.results, name='result'),
+    path('<int:question_id>/results', views.results, name='result'),
     # ex: /polls/2/custom-votes
-    path('<int:question_id>/custom-votes', views.vote, name='voting'),
+    path('<int:question_id>/votes', views.vote, name='voting'),
 ]
